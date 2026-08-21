@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="700" viewBox="0 0 700 700">
+  <defs>
+    <linearGradient id="trabajo_4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2b2723"/>
+      <stop offset="100%" stop-color="#6b5842"/>
+    </linearGradient>
+    <pattern id="trabajo_4_dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#f4ede1" opacity="0.06"/>
+    </pattern>
+  </defs>
+  <rect width="700" height="700" fill="url(#trabajo_4)"/>
+  <rect width="700" height="700" fill="url(#trabajo_4_dots)"/>
+  <g transform="translate(350.0,332.0)">
+    <g transform="translate(-16,-11)" opacity="0.55" fill="none" stroke="#f4ede1" stroke-width="2">
+            <rect x="0" y="4" width="32" height="20" rx="3"/>
+            <circle cx="16" cy="14" r="6"/>
+            <rect x="10" y="0" width="10" height="4"/>
+        </g>
+  </g>
+  <text x="50%" y="372.0" font-family="Georgia, 'Times New Roman', serif" font-size="31" fill="#f4ede1" text-anchor="middle" opacity="0.92" letter-spacing="1">Peinado</text>
+  <text x="50%" y="396.0" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#f4ede1" text-anchor="middle" opacity="0.55" letter-spacing="2">FOTO DE TRABAJO — REEMPLAZAR</text>
+</svg>
