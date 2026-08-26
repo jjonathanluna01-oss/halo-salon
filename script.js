@@ -1,5 +1,5 @@
 /* ============================================================
-   LB STUDIO — script.js
+   HALO SALON — script.js
    ------------------------------------------------------------
    TODO LO QUE HAY QUE EDITAR PARA PERSONALIZAR EL SITIO
    ESTÁ ACÁ ARRIBA, EN EL OBJETO "CONFIG".
@@ -13,7 +13,7 @@
 
 const CONFIG = {
   // Nombre del salón (aparece en el header, footer y mensajes de WhatsApp)
-  salonName: "LB Studio",
+  salonName: "Halo Salon",
 
   // ⚠️ IMPORTANTE: reemplazar por el número real de WhatsApp de la peluquera.
   // Formato: código de país + código de área + número, SIN espacios, SIN "+", SIN 0 ni 15.
@@ -23,7 +23,7 @@ const CONFIG = {
   // Datos de contacto (footer)
   address: "Calle Falsa 123, Córdoba, Argentina",
   phoneDisplay: "+54 9 351 123-4567",
-  email: "hola@lbstudio.com",
+  email: "hola@halosalon.com",
 
   // Redes sociales (dejar "" en href para ocultar el ícono)
   social: [
