@@ -44,7 +44,7 @@ const CONFIG = {
   closedWeekdays: [0],
 
   // Categorías para filtrar la galería de trabajos
-  galleryCategories: ["Todos", "Corte", "Color", "Peinado", "Alisado"],
+  galleryCategories: ["Todos", "Corte", "Color", "Peinado", "Alisado", "Manicura"],
 
   // Trabajos realizados (portfolio). "category" debe coincidir con galleryCategories.
   gallery: [
@@ -56,6 +56,9 @@ const CONFIG = {
     { image: "images/trabajo-6.svg", title: "Coloración global", category: "Color" },
     { image: "images/trabajo-7.svg", title: "Trenzas y recogido", category: "Peinado" },
     { image: "images/trabajo-8.svg", title: "Brushing", category: "Peinado" },
+    { image: "images/trabajo-9.svg", title: "Manicura tradicional", category: "Manicura" },
+    { image: "images/trabajo-10.svg", title: "Semipermanente", category: "Manicura" },
+    { image: "images/trabajo-11.svg", title: "Uñas esculpidas", category: "Manicura" },
   ],
 
   // Servicios ofrecidos. El precio es solo texto (podés poner "Desde $X" o un rango).
