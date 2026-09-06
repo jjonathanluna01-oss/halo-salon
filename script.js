@@ -18,11 +18,11 @@ const CONFIG = {
   // ⚠️ IMPORTANTE: reemplazar por el número real de WhatsApp de la peluquera.
   // Formato: código de país + código de área + número, SIN espacios, SIN "+", SIN 0 ni 15.
   // Ejemplo Argentina (Córdoba, cel): 549351XXXXXXX
-  whatsappNumber: "5493511234567",
+  whatsappNumber: "5491158946455",
 
   // Datos de contacto (footer)
-  address: "Calle Falsa 123, Córdoba, Argentina",
-  phoneDisplay: "+54 9 351 123-4567",
+  address: "Coronel Charlone 1155, San Miguel, Buenos Aires, Argentina",
+  phoneDisplay: "+54 9 11 5894-6455",
   email: "hola@halosalon.com",
 
   // Redes sociales (dejar "" en href para ocultar el ícono)
@@ -59,15 +59,21 @@ const CONFIG = {
   ],
 
   // Servicios ofrecidos. El precio es solo texto (podés poner "Desde $X" o un rango).
+  // "category" agrupa los servicios en el sitio (ej: "Peluquería", "Manicura").
   services: [
-    { name: "Corte", description: "Corte personalizado según tu estilo y tipo de cabello.", price: "$8.000", duration: "40 min" },
-    { name: "Color raíz", description: "Retoque de color en raíz con productos premium.", price: "$12.000", duration: "1 h" },
-    { name: "Color completo", description: "Coloración global de punta a punta.", price: "$18.000", duration: "1 h 30 min" },
-    { name: "Balayage / Mechas", description: "Técnica de iluminación con efecto natural.", price: "Desde $25.000", duration: "2 h" },
-    { name: "Brushing", description: "Secado y peinado profesional para el día a día.", price: "$6.000", duration: "30 min" },
-    { name: "Peinado para eventos", description: "Peinados de fiesta, civil o graduación.", price: "Desde $15.000", duration: "1 h" },
-    { name: "Alisado / Keratina", description: "Tratamiento alisador con keratina.", price: "Desde $30.000", duration: "2 h 30 min" },
-    { name: "Tratamiento capilar", description: "Hidratación y reparación profunda.", price: "$10.000", duration: "45 min" },
+    { category: "Peluquería", name: "Corte", description: "Corte personalizado según tu estilo y tipo de cabello.", price: "$8.000", duration: "40 min" },
+    { category: "Peluquería", name: "Color raíz", description: "Retoque de color en raíz con productos premium.", price: "$12.000", duration: "1 h" },
+    { category: "Peluquería", name: "Color completo", description: "Coloración global de punta a punta.", price: "$18.000", duration: "1 h 30 min" },
+    { category: "Peluquería", name: "Balayage / Mechas", description: "Técnica de iluminación con efecto natural.", price: "Desde $25.000", duration: "2 h" },
+    { category: "Peluquería", name: "Brushing", description: "Secado y peinado profesional para el día a día.", price: "$6.000", duration: "30 min" },
+    { category: "Peluquería", name: "Peinado para eventos", description: "Peinados de fiesta, civil o graduación.", price: "Desde $15.000", duration: "1 h" },
+    { category: "Peluquería", name: "Alisado / Keratina", description: "Tratamiento alisador con keratina.", price: "Desde $30.000", duration: "2 h 30 min" },
+    { category: "Peluquería", name: "Tratamiento capilar", description: "Hidratación y reparación profunda.", price: "$10.000", duration: "45 min" },
+    // ⚠️ Precios de manicura a confirmar — reemplazar cuando estén los valores reales.
+    { category: "Manicura", name: "Manicura tradicional", description: "Limado, cutículas e esmaltado clásico.", price: "A confirmar", duration: "40 min" },
+    { category: "Manicura", name: "Semipermanente", description: "Esmaltado de larga duración, alto brillo.", price: "A confirmar", duration: "50 min" },
+    { category: "Manicura", name: "Uñas esculpidas", description: "Extensión de uñas con gel o acrílico.", price: "A confirmar", duration: "1 h 30 min" },
+    { category: "Manicura", name: "Pedicura", description: "Tratamiento completo de pies con esmaltado.", price: "A confirmar", duration: "45 min" },
   ],
 
   // Productos a la venta. La "compra" se hace por consulta directa a WhatsApp.
@@ -177,21 +183,30 @@ function filterGallery(category) {
 /* ---------- Servicios ---------- */
 function renderServices() {
   const wrap = document.getElementById("servicesList");
-  wrap.innerHTML = CONFIG.services
-    .map(
-      (s, i) => `
-      <div class="service-card">
-        <div class="service-card__info">
-          <h3>${s.name}</h3>
-          <p>${s.description}</p>
-          <span class="service-card__meta">${s.duration}</span>
-        </div>
-        <div class="service-card__action">
-          <span class="service-card__price">${s.price}</span>
-          <a href="#turnos" class="service-card__book" data-service-index="${i}">Reservar →</a>
-        </div>
-      </div>`
-    )
+  const categories = [...new Set(CONFIG.services.map((s) => s.category))];
+
+  wrap.innerHTML = categories
+    .map((cat) => {
+      const cards = CONFIG.services
+        .map((s, i) => ({ ...s, index: i }))
+        .filter((s) => s.category === cat)
+        .map(
+          (s) => `
+          <div class="service-card">
+            <div class="service-card__info">
+              <h3>${s.name}</h3>
+              <p>${s.description}</p>
+              <span class="service-card__meta">${s.duration}</span>
+            </div>
+            <div class="service-card__action">
+              <span class="service-card__price">${s.price}</span>
+              <a href="#turnos" class="service-card__book" data-service-index="${s.index}">Reservar →</a>
+            </div>
+          </div>`
+        )
+        .join("");
+      return `<h3 class="services__group-title">${cat}</h3><div class="services__group">${cards}</div>`;
+    })
     .join("");
 
   // Al elegir "Reservar" en un servicio, precargar el select del formulario

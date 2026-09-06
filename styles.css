@@ -401,6 +401,17 @@ ul { list-style: none; }
 
 /* ===== Servicios ===== */
 .services {
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+}
+.services__group-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  color: var(--dark);
+  margin-bottom: 20px;
+}
+.services__group {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 18px;
@@ -749,7 +760,7 @@ ul { list-style: none; }
   .about__image { max-width: 420px; }
   .turnos { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: repeat(3, 1fr); }
-  .services { grid-template-columns: 1fr; }
+  .services__group { grid-template-columns: 1fr; }
   .products { grid-template-columns: repeat(2, 1fr); }
   .footer__inner { grid-template-columns: 1fr 1fr; }
 }
