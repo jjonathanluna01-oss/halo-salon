@@ -22,7 +22,14 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* Los links con # no quedan tapados por el header fijo */
+  scroll-padding-top: 88px;
+  /* Cortafuegos contra scroll horizontal en mobile */
+  overflow-x: clip;
+}
+html.nav-open { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -229,6 +236,7 @@ ul { list-style: none; }
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh; /* evita el "salto" por la barra del navegador en mobile */
   display: flex;
   align-items: center;
   background-size: cover;
@@ -403,14 +411,15 @@ ul { list-style: none; }
 .services {
   display: flex;
   flex-direction: column;
-  gap: 46px;
+  gap: 18px;
 }
 .services__group-title {
   font-family: var(--font-heading);
   font-size: 24px;
   color: var(--dark);
-  margin-bottom: 20px;
+  margin-top: 34px;
 }
+.services__group-title:first-child { margin-top: 0; }
 .services__group {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -481,6 +490,10 @@ ul { list-style: none; }
   gap: 60px;
   align-items: flex-start;
 }
+/* Sin esto, el <select> con opciones largas no deja achicar la columna y
+   el formulario se sale de la pantalla en mobile */
+.turnos__info,
+.turnos__form { min-width: 0; }
 .turnos__info h2 {
   font-family: var(--font-heading);
   font-size: clamp(28px, 4vw, 40px);
@@ -506,9 +519,9 @@ ul { list-style: none; }
   flex-direction: column;
   gap: 18px;
 }
-.form__row { display: flex; flex-direction: column; gap: 7px; }
+.form__row { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
 .form__row--split { flex-direction: row; gap: 14px; }
-.form__row--split > div { flex: 1; display: flex; flex-direction: column; gap: 7px; }
+.form__row--split > div { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 7px; }
 
 .form__row label {
   font-size: 13px;
@@ -519,6 +532,8 @@ ul { list-style: none; }
 .form__row input,
 .form__row select,
 .form__row textarea {
+  width: 100%;
+  min-width: 0;
   padding: 13px 14px;
   border: 1.5px solid #e6dfd2;
   border-radius: 8px;
@@ -754,50 +769,118 @@ ul { list-style: none; }
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+/* ===== Scrim del menú mobile ===== */
+.nav-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 6, 12, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 485;
+}
+.nav-scrim.is-visible { opacity: 1; visibility: visible; }
+@media (min-width: 901px) { .nav-scrim { display: none; } }
+
+/* En pantallas táctiles no hay hover: mostramos siempre el título del trabajo */
+@media (hover: none) {
+  .gallery__overlay {
+    opacity: 1;
+    background: linear-gradient(180deg, rgba(74,18,32,0) 55%, rgba(74,18,32,0.82) 100%);
+  }
+}
+
 /* ===== Responsive ===== */
+
+/* --- Tablet / desktop chico --- */
 @media (max-width: 980px) {
-  .about { grid-template-columns: 1fr; padding-top: 80px; padding-bottom: 80px; }
-  .about__image { max-width: 420px; }
-  .turnos { grid-template-columns: 1fr; }
+  .about { grid-template-columns: 1fr; gap: 40px; padding-top: 80px; padding-bottom: 80px; }
+  .about__image { max-width: 420px; margin: 0 auto; }
+  .turnos { grid-template-columns: 1fr; gap: 40px; }
   .gallery { grid-template-columns: repeat(3, 1fr); }
   .services__group { grid-template-columns: 1fr; }
   .products { grid-template-columns: repeat(2, 1fr); }
   .footer__inner { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 720px) {
+/* --- Modo mobile: menú hamburguesa + barra fija de reserva --- */
+@media (max-width: 900px) {
+  html { scroll-padding-top: 72px; }
+
   .nav {
     position: fixed;
     top: 0; right: 0;
     height: 100vh;
-    width: min(78vw, 320px);
+    height: 100dvh;
+    width: min(80vw, 320px);
     background: var(--dark);
     flex-direction: column;
     justify-content: center;
-    gap: 26px;
+    gap: 12px;
+    padding: 80px 22px 24px;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     z-index: 490;
+    overflow-y: auto;
   }
   .nav.is-open { transform: translateX(0); }
-  .nav__link { font-size: 17px; }
+  .nav__link {
+    font-size: 17px;
+    width: 100%;
+    padding: 13px 8px;
+    text-align: center;
+    opacity: 1;
+  }
+  .nav__link::after { display: none; }
   .nav__toggle { display: flex; }
   .nav__cta { display: none; }
 
+  body.nav-open .header { background: var(--dark); }
+
+  .hero__scroll { display: none; }
+
+  /* La barra fija de reserva reemplaza al botón flotante de WhatsApp */
+  body { padding-bottom: 76px; }
+  .whatsapp-float { display: none; }
+  .mobile-cta { display: flex; }
+  .back-to-top { bottom: 88px; left: auto; right: 16px; width: 42px; height: 42px; }
+  .snackbar { bottom: 92px; }
+}
+
+/* --- Teléfonos --- */
+@media (max-width: 720px) {
   .hero__actions { flex-direction: column; }
   .btn--full, .hero__actions .btn { width: 100%; }
 
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .products { grid-template-columns: 1fr; }
-  .form__row--split { flex-direction: column; }
-  .section { padding: 70px 0; }
-  .turnos__form { padding: 26px; }
-  .footer__inner { grid-template-columns: 1fr; gap: 30px; }
 
-  /* En mobile, la barra fija de reserva reemplaza al botón flotante de WhatsApp */
-  body { padding-bottom: 78px; }
-  .whatsapp-float { display: none; }
-  .mobile-cta { display: flex; }
-  .back-to-top { bottom: 96px; left: 16px; width: 42px; height: 42px; }
-  .snackbar { bottom: 96px; }
+  .form__row--split { flex-direction: column; }
+  /* 16px evita que iOS haga zoom automático al tocar un campo */
+  .form__row input,
+  .form__row select,
+  .form__row textarea { font-size: 16px; }
+
+  .section { padding: 64px 0; }
+  .turnos__form { padding: 24px; }
+  .footer__inner { grid-template-columns: 1fr; gap: 28px; }
+
+  /* Tarjeta de servicio: apilada, para que no se apriete ni se desborde */
+  .service-card { flex-direction: column; align-items: stretch; gap: 14px; }
+  .service-card__info p { max-width: none; }
+  .service-card__action {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+/* --- Teléfonos chicos --- */
+@media (max-width: 380px) {
+  .container { padding: 0 16px; }
+  .section { padding: 52px 0; }
+  .hero__content { padding-top: 76px; }
+  .services__group-title { font-size: 21px; }
+  .turnos__form { padding: 20px; }
 }

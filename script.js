@@ -290,17 +290,30 @@ function setupHeaderScroll() {
 function setupMobileNav() {
   const toggle = document.getElementById("navToggle");
   const nav = document.getElementById("nav");
-  toggle.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("is-open");
-    toggle.classList.toggle("is-active", isOpen);
-    toggle.setAttribute("aria-expanded", String(isOpen));
-  });
+
+  // Fondo oscuro detrás del menú abierto (tocarlo lo cierra)
+  const scrim = document.createElement("div");
+  scrim.className = "nav-scrim";
+  document.body.appendChild(scrim);
+
+  const setOpen = (open) => {
+    nav.classList.toggle("is-open", open);
+    toggle.classList.toggle("is-active", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    scrim.classList.toggle("is-visible", open);
+    document.body.classList.toggle("nav-open", open);
+    // Bloquea el scroll del fondo mientras el menú está abierto
+    document.documentElement.classList.toggle("nav-open", open);
+  };
+
+  toggle.addEventListener("click", () => setOpen(!nav.classList.contains("is-open")));
+  scrim.addEventListener("click", () => setOpen(false));
   nav.querySelectorAll(".nav__link").forEach((link) =>
-    link.addEventListener("click", () => {
-      nav.classList.remove("is-open");
-      toggle.classList.remove("is-active");
-    })
+    link.addEventListener("click", () => setOpen(false))
   );
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && nav.classList.contains("is-open")) setOpen(false);
+  });
 }
 
 /* ---------- Lightbox para la galería ---------- */
