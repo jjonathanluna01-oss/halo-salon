@@ -436,7 +436,7 @@ function setupBackToTop() {
 /* ---------- Animación sutil de aparición al hacer scroll ---------- */
 function setupScrollReveal() {
   const els = document.querySelectorAll(
-    ".about__image, .about__text, .section__title, .section__subtitle, .gallery__item, .service-card, .product-card, .turnos__info, .turnos__form"
+    ".about__gallery, .about__text, .section__title, .section__subtitle, .gallery__item, .service-card, .product-card, .turnos__info, .turnos__form"
   );
   if (!els.length) return;
 
