@@ -240,13 +240,13 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   background-size: cover;
-  background-position: center;
+  background-position: center 30%; /* baja un poco la foto para que se lea el texto del flyer */
   overflow: hidden;
 }
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(74,18,32,0.32) 0%, rgba(74,18,32,0.48) 60%, rgba(74,18,32,0.68) 100%);
+  background: linear-gradient(180deg, rgba(74,18,32,0.55) 0%, rgba(74,18,32,0.75) 60%, rgba(74,18,32,0.92) 100%);
 }
 .hero__content {
   position: relative;
