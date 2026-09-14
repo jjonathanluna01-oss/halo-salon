@@ -64,14 +64,15 @@ const CONFIG = {
   // Servicios ofrecidos. El precio es solo texto (podés poner "Desde $X" o un rango).
   // "category" agrupa los servicios en el sitio (ej: "Peluquería", "Manicura").
   services: [
-    { category: "Peluquería", name: "Corte", description: "Corte personalizado según tu estilo y tipo de cabello.", price: "$8.000", duration: "40 min" },
-    { category: "Peluquería", name: "Color raíz", description: "Retoque de color en raíz con productos premium.", price: "$12.000", duration: "1 h" },
-    { category: "Peluquería", name: "Color completo", description: "Coloración global de punta a punta.", price: "$18.000", duration: "1 h 30 min" },
-    { category: "Peluquería", name: "Balayage / Mechas", description: "Técnica de iluminación con efecto natural.", price: "Desde $25.000", duration: "2 h" },
-    { category: "Peluquería", name: "Brushing", description: "Secado y peinado profesional para el día a día.", price: "$6.000", duration: "30 min" },
-    { category: "Peluquería", name: "Peinado para eventos", description: "Peinados de fiesta, civil o graduación.", price: "Desde $15.000", duration: "1 h" },
-    { category: "Peluquería", name: "Alisado / Keratina", description: "Tratamiento alisador con keratina.", price: "Desde $30.000", duration: "2 h 30 min" },
-    { category: "Peluquería", name: "Tratamiento capilar", description: "Hidratación y reparación profunda.", price: "$10.000", duration: "45 min" },
+    { category: "Peluquería", name: "Corte", description: "Corte personalizado según tu estilo y tipo de cabello.", price: "$35.000", duration: "40 min" },
+    { category: "Peluquería", name: "Nutrición", description: "Tratamiento de nutrición profunda para hidratar y reparar el cabello.", price: "$40.000", duration: "45 min" },
+    { category: "Peluquería", name: "Keratina", description: "Alisado con keratina para reducir el frizz y sumar brillo.", price: "$50.000", duration: "1 h 30 min" },
+    { category: "Peluquería", name: "Alisado", description: "Alisado progresivo para un cabello liso de larga duración.", price: "$70.000", duration: "2 h 30 min" },
+    { category: "Peluquería", name: "Reflejos con gorra", description: "Iluminación de mechones con gorra para un efecto natural.", price: "Desde $120.000", duration: "2 h" },
+    { category: "Peluquería", name: "Balayage", description: "Técnica de iluminación en mechones sueltos, sin gorra.", price: "Desde $180.000", duration: "2 h 30 min" },
+    { category: "Peluquería", name: "Peinados", description: "Peinados de fiesta, civil o para el día a día.", price: "Desde $60.000", duration: "1 h" },
+    { category: "Peluquería", name: "Contorno", description: "Iluminación en el contorno del rostro para un efecto natural.", price: "$60.000", duration: "1 h" },
+    { category: "Peluquería", name: "Color completo", description: "Coloración global de punta a punta.", price: "$50.000", duration: "1 h 30 min" },
     // ⚠️ Precios de manicura a confirmar — reemplazar cuando estén los valores reales.
     { category: "Manicura", name: "Manicura tradicional", description: "Limado, cutículas e esmaltado clásico.", price: "A confirmar", duration: "40 min" },
     { category: "Manicura", name: "Semipermanente", description: "Esmaltado de larga duración, alto brillo.", price: "A confirmar", duration: "50 min" },
