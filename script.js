@@ -254,7 +254,7 @@ function renderProducts() {
     const btn = e.target.closest("[data-product-index]");
     if (!btn) return;
     const product = CONFIG.products[btn.dataset.productIndex];
-    const message = `Hola ${CONFIG.salonName}! Quiero comprar/consultar por este producto:\n\n🛍️ ${product.name} — ${product.price}\n\n¿Está disponible?`;
+    const message = `Hola ${CONFIG.salonName}! Quiero comprar/consultar por este producto:\n\n*${product.name}* — ${product.price}\n\n¿Está disponible?`;
     const { url } = openWhatsApp(message);
     showSnackbar(`Abriendo WhatsApp para consultar por <strong>${product.name}</strong>… Si no se abrió, <a href="${url}" target="_blank" rel="noopener">tocá acá</a>.`);
   });
@@ -372,17 +372,17 @@ function setupBookingForm() {
 
     const fecha = formatDate(data.date);
     const avisoCerrado = isClosedDate(data.date)
-      ? "\n\n⚠️ Elegiste un día en el que el salón suele estar cerrado — igual te escribimos para confirmar disponibilidad."
+      ? "\n\nAtención: elegiste un día en el que el salón suele estar cerrado — igual te escribimos para confirmar disponibilidad."
       : "";
 
     const message =
-      `Hola ${CONFIG.salonName}! 👋 Quiero reservar un turno.\n\n` +
-      `🙋 Nombre: ${data.name}\n` +
-      `💇 Servicio: ${data.service}\n` +
-      `📅 Fecha: ${fecha}\n` +
-      `🕒 Hora: ${data.time}\n` +
-      `📞 Teléfono: ${data.phone}` +
-      (data.comment ? `\n📝 Comentario: ${data.comment}` : "") +
+      `Hola ${CONFIG.salonName}! Quiero reservar un turno.\n\n` +
+      `*Nombre:* ${data.name}\n` +
+      `*Servicio:* ${data.service}\n` +
+      `*Fecha:* ${fecha}\n` +
+      `*Hora:* ${data.time}\n` +
+      `*Teléfono:* ${data.phone}` +
+      (data.comment ? `\n*Comentario:* ${data.comment}` : "") +
       avisoCerrado;
 
     const { url } = openWhatsApp(message);
