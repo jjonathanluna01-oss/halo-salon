@@ -64,20 +64,20 @@ const CONFIG = {
   // Servicios ofrecidos. El precio es solo texto (podés poner "Desde $X" o un rango).
   // "category" agrupa los servicios en el sitio (ej: "Peluquería", "Manicura").
   services: [
-    { category: "Peluquería", name: "Corte", description: "Corte personalizado según tu estilo y tipo de cabello.", price: "$35.000", duration: "40 min" },
-    { category: "Peluquería", name: "Nutrición", description: "Tratamiento de nutrición profunda para hidratar y reparar el cabello.", price: "$40.000", duration: "45 min" },
-    { category: "Peluquería", name: "Keratina", description: "Alisado con keratina para reducir el frizz y sumar brillo.", price: "$50.000", duration: "1 h 30 min" },
-    { category: "Peluquería", name: "Alisado", description: "Alisado progresivo para un cabello liso de larga duración.", price: "$70.000", duration: "2 h 30 min" },
-    { category: "Peluquería", name: "Reflejos con gorra", description: "Iluminación de mechones con gorra para un efecto natural.", price: "Desde $120.000", duration: "2 h" },
-    { category: "Peluquería", name: "Balayage", description: "Técnica de iluminación en mechones sueltos, sin gorra.", price: "Desde $180.000", duration: "2 h 30 min" },
-    { category: "Peluquería", name: "Peinados", description: "Peinados de fiesta, civil o para el día a día.", price: "Desde $60.000", duration: "1 h" },
-    { category: "Peluquería", name: "Contorno", description: "Iluminación en el contorno del rostro para un efecto natural.", price: "$60.000", duration: "1 h" },
-    { category: "Peluquería", name: "Color completo", description: "Coloración global de punta a punta.", price: "$50.000", duration: "1 h 30 min" },
+    { category: "Peluquería", name: "Corte", description: "Corte personalizado según tu estilo y tipo de cabello.", price: "$35.000" },
+    { category: "Peluquería", name: "Nutrición", description: "Tratamiento de nutrición profunda para hidratar y reparar el cabello.", price: "$40.000" },
+    { category: "Peluquería", name: "Keratina", description: "Alisado con keratina para reducir el frizz y sumar brillo.", price: "$50.000" },
+    { category: "Peluquería", name: "Alisado", description: "Alisado progresivo para un cabello liso de larga duración.", price: "$70.000" },
+    { category: "Peluquería", name: "Reflejos con gorra", description: "Iluminación de mechones con gorra para un efecto natural.", price: "Desde $120.000" },
+    { category: "Peluquería", name: "Balayage", description: "Técnica de iluminación en mechones sueltos, sin gorra.", price: "Desde $180.000" },
+    { category: "Peluquería", name: "Peinados", description: "Peinados de fiesta, civil o para el día a día.", price: "Desde $60.000" },
+    { category: "Peluquería", name: "Contorno", description: "Iluminación en el contorno del rostro para un efecto natural.", price: "$60.000" },
+    { category: "Peluquería", name: "Color completo", description: "Coloración global de punta a punta.", price: "$50.000" },
     // ⚠️ Precios de manicura a confirmar — reemplazar cuando estén los valores reales.
-    { category: "Manicura", name: "Manicura tradicional", description: "Limado, cutículas e esmaltado clásico.", price: "A confirmar", duration: "40 min" },
-    { category: "Manicura", name: "Semipermanente", description: "Esmaltado de larga duración, alto brillo.", price: "A confirmar", duration: "50 min" },
-    { category: "Manicura", name: "Uñas esculpidas", description: "Extensión de uñas con gel o acrílico.", price: "A confirmar", duration: "1 h 30 min" },
-    { category: "Manicura", name: "Pedicura", description: "Tratamiento completo de pies con esmaltado.", price: "A confirmar", duration: "45 min" },
+    { category: "Manicura", name: "Manicura tradicional", description: "Limado, cutículas e esmaltado clásico.", price: "A confirmar" },
+    { category: "Manicura", name: "Semipermanente", description: "Esmaltado de larga duración, alto brillo.", price: "A confirmar" },
+    { category: "Manicura", name: "Uñas esculpidas", description: "Extensión de uñas con gel o acrílico.", price: "A confirmar" },
+    { category: "Manicura", name: "Pedicura", description: "Tratamiento completo de pies con esmaltado.", price: "A confirmar" },
   ],
 
   // Productos a la venta. La "compra" se hace por consulta directa a WhatsApp.
@@ -200,7 +200,6 @@ function renderServices() {
             <div class="service-card__info">
               <h3>${s.name}</h3>
               <p>${s.description}</p>
-              <span class="service-card__meta">${s.duration}</span>
             </div>
             <div class="service-card__action">
               <span class="service-card__price">${s.price}</span>
