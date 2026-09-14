@@ -376,7 +376,8 @@ function setupBookingForm() {
       : "";
 
     const message =
-      `Hola ${CONFIG.salonName}! Quiero reservar un turno.\n\n` +
+      `Hola ${CONFIG.salonName}! 👋🏼🤍\n` +
+      `Quiero reservar un turno.\n\n` +
       `*Nombre:* ${data.name}\n` +
       `*Servicio:* ${data.service}\n` +
       `*Fecha:* ${fecha}\n` +
